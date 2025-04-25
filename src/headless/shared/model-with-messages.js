@@ -602,7 +602,8 @@ export default function ModelWithMessages(BaseModel) {
         getOldestMessage() {
             for (let i = 0; i < this.messages.length; i++) {
                 const message = this.messages.at(i);
-                if (message.get("type") === this.get("message_type")) {
+                const messageType = message.get('type');
+                if (messageType === this.get('message_type') || messageType === 'normal') {
                     return message;
                 }
             }
@@ -611,7 +612,8 @@ export default function ModelWithMessages(BaseModel) {
         getMostRecentMessage() {
             for (let i = this.messages.length - 1; i >= 0; i--) {
                 const message = this.messages.at(i);
-                if (message.get("type") === this.get("message_type")) {
+                const messageType = message.get('type');
+                if (messageType === this.get('message_type') || messageType === 'normal') {
                     return message;
                 }
             }
